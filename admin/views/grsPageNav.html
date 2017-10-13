@@ -1,0 +1,21 @@
+<div class="grsGallHTcPnavC" ng-if="pageInation.pagedItems.length != 0">
+	<ul class="grsGallHTcPnav">
+		<li ng-class="{disabled: pageInation.currentPage == 0}">
+			<a href ng-click="pageInation.firstPage($event);">&laquo;</a>
+		</li>
+		<li  ng-class="{disabled: pageInation.currentPage == 0}">
+			<a href ng-click="pageInation.prevPage($event)">&lsaquo;</a>
+		</li>
+		<li ng-repeat="n in pageInation.range(pageInation.pagedItems.length)"
+			ng-class="{active: n == pageInation.currentPage}"
+			ng-click="setPage($event)"> 
+			<a href ng-bind="n + 1">1</a>
+		</li>
+		<li ng-class="{disabled: pageInation.currentPage == pageInation.pagedItems.length - 1}">
+			<a href ng-click="pageInation.nextPage($event)">&rsaquo;</a>
+		</li>
+		<li ng-class="{disabled: pageInation.currentPage == pageInation.pagedItems.length - 1}">
+			<a href ng-click="pageInation.lastPage($event)">&raquo;</a>
+		</li>
+	</ul>
+</div>

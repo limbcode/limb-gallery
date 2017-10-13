@@ -1,0 +1,30 @@
+<div class="grsMessCont" ng-if="message.show">{{message.text}}</div>
+<div class="grsImsCont" ng-style="{width: params.contWidth + 'px', height: params.contHeight + 'px'}" >
+	<div class="grsLoadCont" ng-if="mainPageination.loading"></div>
+	<div class="grsMasImFrCont" ng-repeat="imgData in mainPageination.pagedItems[mainPageination.currentPage]" ng-style="{left: imgData.left + 'px', top: imgData.top + 'px', height: + imgData.thumbHeight + 'px', width: imgData.thumbWidth + 'px'}" >	
+		<a href="#" class="grsImsBox" ng-click="grsEnter($index, $event)" >
+			<div class="grsImSecCont" >				
+				<img ng-class="{'grsImFadeIn' : imgData.show, 'grsImZeroOp' : !imgData.show}" image-onload="imgLoaded($index, $event)" class="grsIm" alt="{{imgData.title}}" ng-style="{height: + imgData.thumbHeight + 'px'}" ng-src="{{getImageSrc($index)}}" > 
+				<div class="grsMask" ng-if="grsShMC()">
+					<div class="mask mask-1"></div>
+					<div class="mask mask-2"></div>
+					<div class="grsImHovEf" >
+						<div class="grsMasTitleCT">
+							<div class="grsMasTitleCC">
+								<div class="grsMasTitle">{{imgData.title}}</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+				<div class="grsMasTitleC" ng-if="grsShTC()" ng-class="grsOnhv()">
+					<div class="grsMasTitleCT">
+						<div class="grsMasTitleCC">
+							<div class="grsMasTitle">{{imgData.title}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div> 
+</div>
+<grs-nav page-ination="mainPageination" ng-style="{width: params.contWidth + 'px'}" class="grsNavD"></grs-nav>

@@ -1,0 +1,33 @@
+<div class="grsMessCont" ng-if="message.show">{{message.text}}</div>
+<div class="grsImsCont" ng-style="{width: params.contWidth + 'px', height: params.contHeight + 'px'}">
+	<div class="grsLoadCont" ng-if="pageination.loading"></div>
+	<div class="grsThImFrCont" ng-repeat="imgData in pageination.pagedItems[pageination.currentPage]" ng-style="{left: imgData.left + 'px', top: imgData.top + 'px', height: + imgData.thumbHeight + 'px', width: imgData.thumbWidth + 'px'}" ng-class="polOn($index)" >
+		<a href="#" class="grsImsBox" ng-click="clickAction($index, $event)" >
+			<div class="grsImsMainC">
+				<div class="grsImSecCont" back-img="{{getImageSrc($index)}}" >
+				</div>
+				<div class="grsVidIc" ng-if="shVIc($index)">
+				</div>
+				<div class="grsMask" ng-if="grsShMC()">
+					<div class="mask mask-1"></div>
+					<div class="mask mask-2"></div>
+					<div class="grsImHovEf" >
+						<div class="grsThTitleCT">
+							<div class="grsThTitleCC">
+								<div class="grsThTitle">{{imgData.title}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grsThTitleC" ng-if="grsShTC()" ng-class="grsOnhv()">
+					<div class="grsThTitleCT">
+						<div class="grsThTitleCC">
+							<div class="grsThTitle">{{imgData.title}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div> 
+</div>
+<grs-nav page-ination="pageination" ng-style="{width: params.contWidth + 'px'}" class="grsNavD"></grs-nav>

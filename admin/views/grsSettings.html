@@ -1,0 +1,119 @@
+<div class="grsGallCoSettC"
+     ng-class="{'grsAnDur grsSlideInLeft' : showContPart == 'Sett', 'grsDisplayNone' : showContPart != 'Sett'}">
+    <div class="grsSettT">
+        <div class="grsTableRow">
+            <div class="grsCell">
+                <label for="timezone">Timezone:</label>
+            </div>
+            <div class="grsCell">
+                <select ng-disabled="checkTDis()" name="timezone" id="timezone" ng-model="data.settings.timezone"
+                        ng-options="value as value for (key , value) in data.timezones" class="grsSelect">
+                </select>
+            </div>
+            <div class="grsCell">
+                <label for="collapseNavClicks_1">Collapse navigation clicks while animation in progress:</label>
+            </div>
+            <div class="grsCell">
+                <label for="collapseNavClicks_1">Yes:</label>
+                <input ng-disabled="checkEDis()" type="radio" ng-model="data.settings.collapseNavClicks" value="1"
+                       name="collapseNavClicks" id="collapseNavClicks_1">
+                <label for="collapseNavClicks_0">No:</label>
+                <input ng-disabled="checkEDis()" type="radio" ng-model="data.settings.collapseNavClicks" value="0"
+                       name="collapseNavClicks" id="collapseNavClicks_0">
+            </div>
+        </div>
+        <div class="grsTableRow">
+            <div class="grsCell">
+                <label for="timeformat">Timeformat:</label>
+            </div>
+            <div class="grsCell">
+                <select ng-disabled="checkTDis()" name="timeformat" id="timeformat" ng-model="data.settings.timeformat"
+                        ng-options="key as value for (key , value) in data.timeformats" class="grsSelect">
+                </select>
+            </div>
+            <div class="grsCell" ng-if="data.settings.collapseNavClicks == 1">
+                <label for="clicksCount">Clicks count:</label>
+            </div>
+            <div class="grsCell" ng-if="data.settings.collapseNavClicks == 1">
+                <input ng-disabled="checkEDis()" type="number" to-int ng-model="data.settings.clicksCount"
+                       name="clicksCount" id="clicksCount" class="grsElementSize grsInput">
+            </div>
+        </div>
+        <div class="grsTableRow">
+            <div class="grsCell">
+                <label for="openCommTrig_1">Show Comments immediately after Lightbox opens: <br> (if Comments is enabled in shortcode)</label>
+            </div>
+            <div class="grsCell">
+                <label for="openCommTrig_1">Yes:</label>
+                <input ng-disabled="checkEDis()" type="radio" ng-model="data.settings.openCommTrig" value="1"
+                       name="openCommTrig" id="openCommTrig_1">
+                <label for="openCommTrig_0">No:</label>
+                <input ng-disabled="checkEDis()" type="radio" ng-model="data.settings.openCommTrig" value="0"
+                       name="openCommTrig" id="openCommTrig_0">
+            </div>
+            <div class="grsCell">
+                <label for="showTitleDescTrig_1">Show Info immediately after Lightbox opens: <br> (if Info is enabled in shortcode)</label>
+            </div>
+            <div class="grsCell">
+                <label for="showTitleDescTrig_1">Yes:</label>
+                <input type="radio" ng-model="data.settings.showTitleDescTrig" value="1" name="showTitleDescTrig"
+                       id="showTitleDescTrig_1">
+                <label for="showTitleDescTrig_0">No:</label>
+                <input type="radio" ng-model="data.settings.showTitleDescTrig" value="0" name="showTitleDescTrig"
+                       id="showTitleDescTrig_0">
+            </div>
+        </div>
+        <div class="grsTableRow">
+            <div class="grsCell">
+                <label for="fmImMoveCount">Lightbox filmstrip image move count:</label>
+            </div>
+            <div class="grsCell">
+                <input ng-disabled="checkFilmDis()" type="number" to-int ng-model="data.settings.fmImMoveCount"
+                       name="fmImMoveCount" id="fmImMoveCount" class="grsElementSize grsInput">
+            </div>
+            <div class="grsCell">
+                <label for="hideNavButton_1">Hide navigation button while reaching to the end(start):</label>
+            </div>
+            <div class="grsCell">
+                <label for="hideNavButton_1">Yes:</label>
+                <input type="radio" ng-model="data.settings.hideNavButton" value="1" name="hideNavButton"
+                       id="hideNavButton_1">
+                <label for="hideNavButton_0">No:</label>
+                <input type="radio" ng-model="data.settings.hideNavButton" value="0" name="hideNavButton"
+                       id="hideNavButton_0">
+            </div>
+        </div>
+        <div class="grsTableRow">
+            <div class="grsCell">
+                <label for="filmImMoveCount">Carousel image move count:</label>
+            </div>
+            <div class="grsCell">
+                <input type="number" to-int ng-model="data.settings.filmImMoveCount" name="filmImMoveCount"
+                       id="filmImMoveCount" class="grsElementSize grsInput">
+            </div>
+            <div class="grsCell">
+                <label for="closeLbOnSide_1">Close lightbox by click on side:</label>
+            </div>
+            <div class="grsCell">
+                <label for="closeLbOnSide_1">Yes:</label>
+                <input type="radio" ng-model="data.settings.closeLbOnSide" value="1" name="closeLbOnSide"
+                       id="closeLbOnSide_1">
+                <label for="closeLbOnSide_0">No:</label>
+                <input type="radio" ng-model="data.settings.closeLbOnSide" value="0" name="closeLbOnSide"
+                       id="closeLbOnSide_0">
+            </div>
+        </div>
+        <div class="grsTableRow">
+            <div class="grsCell">
+                <label for="uninstall">Uninstall plugin:</label>
+            </div>
+            <div class="grsCell">
+                <button class="grsUninstallButt" id="uninstall" ng-click="uninstallPr($event)">Uninstall</button>
+            </div>
+            <div class="grsCell">
+            </div>
+            <div class="grsCell">
+            </div>
+        </div>
+    </div>
+</div>

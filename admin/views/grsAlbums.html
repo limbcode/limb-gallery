@@ -1,0 +1,109 @@
+<div class="grsGallCoAlbC" ng-class="{'grsAnDur grsSlideInLeft' : showContPart == 'Alb', 'grsDisplayNone' : showContPart != 'Alb'}" >
+	<div class="grsGallCoAlbLabC">
+		<ul>
+			<li>
+				<input id="grsCheckAlbAll" type="checkbox" name="grsCheckAlbAll" ng-click="checkAll()" ng-model="isAllChecked" >
+			</li>
+			<li ng-click="grsAddAlbum()">Add Album</li>
+			<li ng-click="grsDeleteAlbumPr($event)"> Delete </li>
+		</ul>
+	</div>
+	<div class="grsGallCoAlbItemsC">
+		<ul>
+			<li ng-repeat="grsAlbum in pageination.pagedItems[pageination.currentPage]" ng-click="grsChangeAlbum($index)" ng-class="{'selected' : grsSelectedAlbum.id == grsAlbum.id}" >
+				<div class="grsGallCoAlbItemInp">
+					<input type="checkbox" name="grsCheckAlb" ng-model="grsAlbum.checked" ng-change="checked()">
+				</div>
+				<div class="grsGallCoAlbIteml">
+					<span>{{grsAlbum.title.trunc(23)}}</span>
+				</div>
+				<div class="grsGallCoAlbItemD" ng-click="grsDeleteAlbumPr($event, $index)"> 
+					<span title="Remove"></span>
+				</div>
+				<div class="grsGallCoAlbItemIm" >
+					<img ng-src="{{getPrevImg($index)}}">
+				</div>
+			</li>
+		</ul>
+		<grs-page-nav page-ination="pageination" ></grs-page-nav>
+	</div>
+	<div class="grsGallCoAlbDataInfC" ng-if="grsSelectedAlbum.id">
+		<div class="grsGallCoAlbInfC">
+			<!-- Album name -->
+			<div class="grsGallCoAlbInfp">
+				<div>
+					<div>
+						<!-- <label>Title:</label> -->
+						<input type="text" ng-model="grsSelectedAlbum.title" name="grsAlbumTitle" id="grsAlbumTitle" class="grsAlbumTitle">
+					</div>
+				</div>
+			</div>
+			<!-- Album description -->
+			<div class="grsGallCoAlbInfp">
+				<div>
+					<div>
+						<!-- <label>Description:</label> -->
+						<textarea name="grsAlbumDescription" ng-model="grsSelectedAlbum.description" id="grsAlbumDescription" class="grsAlbumDescription"></textarea>
+					</div>
+				</div>
+			</div>
+			<!-- Album preview image -->
+			<div class="grsGallCoAlbInfp grsGallCoAlbPic">
+				<div>
+					<div>
+						<img class="grsAPw" ng-src="{{grsSelectedAlbum.pvAlbIm}}" ng-class="{'grsVisHidd' : grsSelectedAlbum.hidePvIm}">
+					</div>
+				</div>
+				<div class="grsUpPwIC" ng-click="activeAPw()" >
+					<div class="grsUpPwIl">
+						<div></div>
+					</div>
+					<div class="grsUpPwIT">
+						Update Preview Image
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grsGallCoAlbDataC">
+			<!-- Album add content -->
+			<div class="grsGallCoAlbDataButtsC">
+				<ul>
+					<li>
+						<div>
+							<label ng-click="contForAdd('gall')">Add Gallery</label>
+						</div>
+						<div class="grsGallCoAlbDataGallsC" ng-if="showGallsForAdd" ng-class="{'grsFadeInRight grsAnDur' : showGallsForAdd}">
+						<!-- repeat for galleries -->
+							<ul>
+								<li ng-repeat="grsGallery in grsGalleriesForAlb" grsGalleryId="{{grsGallery.id}}" grsGalleryIndex="{{$index}}" >
+									<div class="grsGallCoAlbDataGallL" >{{grsGallery.title.trunc(12)}}</div><div class="grsAlbGallItemA" ng-click="grsAddGalleryForAlbum($index)"></div>
+								</li>
+							</ul>				
+						</div>
+					</li>
+					<li>
+						<div>
+							<label ng-click="contForAdd('alb')">Add Album</label>
+						</div>
+						<div class="grsGallCoAlbDataAlbsC" ng-if="showAlbsForAdd" ng-class="{'grsFadeInLeft grsAnDur': showAlbsForAdd}">
+						<!-- repeat for albums -->
+							<ul>
+								<li ng-repeat="grsAlbum in grsAlbums" ng-if="grsAlbum.id != grsSelectedAlbum.id">
+									<div class="grsGallCoAlbDataAlbl" >{{grsAlbum.title.trunc(14)}}</div><div class="grsAlbAlbItemA" ng-click="grsAddAlbumForAlbum($index)"></div>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="grsGallCoAlbDataContC">
+				<ul>
+					<li ng-repeat="grsContent in grsSelectedAlbum.content" class="grsGallCoAlb{{grsContent.type}}">
+						<div class="grsGallCoAlb{{grsContent.type}}Lab" >{{grsContent.title.trunc(35)}}</div>
+						<div ng-click="grsDeleteAlbumContent($index)"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

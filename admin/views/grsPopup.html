@@ -1,0 +1,38 @@
+<div class="grsGallPopup" ng-if="popupOptions.show" >
+	<div class="grsGallPopupVa" >
+		<div class="grsGallPopupVaC">
+			<div class="grsGallPopupMc">
+				<div class="grsGallPopupImc">
+					<img ng-if="isImage()" ng-show="popupOptions.showImg" ng-src="{{imgSrc()}}" image-onload="imgLoaded()" >
+					<video ng-if="isVideo()" controls autoplay>
+						<source ext-src="{{itemSrc()}}"  type="video/mp4">
+					  	<source ext-src="{{itemSrc()}}"  type="video/ogg">
+					 	 Your browser does not support the video tag.
+					</video>
+					<iframe ng-if="isLink()" ext-src="{{itemSrc()}}" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</div>
+				<div class="grsGallPopupDatc" >
+					<div class="grsGallPopupClc" >
+						<span ng-click="closePopup()"></span>
+					</div>
+					<div class="grsGallPopupComsC" >
+						<div class="grsGallPopupComC" ng-repeat="comment in popupOptions.comments">
+							<div class="grsGallPopupComDataC" >
+								<p>{{comment.comment}}</p>
+								<span class="grsGallPopupReCom" ng-click="removeComments($index)" title="Delete" ></span>
+							</div>	
+							<div class="grsGallPopupComInfoC" >
+								<span class="grsGallPopupComAuth" >{{comment.name}}</span>
+								<span class="grsGallPopupComDots" >:</span>
+								<span class="grsGallPopupComEmail" >{{comment.email}}</span>
+							</div>
+							<div>
+                            	<span class="grsGallPopupComDate" >{{comment.createDate}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

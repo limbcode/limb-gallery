@@ -1,0 +1,169 @@
+<div class="grsGallCoGaC" id="grsGallery_{{selGall.id}}" grsGalleryId="{{selGall.id}}" ng-class="{'grsAnDur grsSlideInRight dirBlock' : showContPart == 'Gall', 'grsDisplayNone' : showContPart != 'Gall'}"  >
+	<div class="grsGallCoGaInC">
+		<div class="grsGallCoGaInTc">
+			<label class="grsGallCoGaInTl" for="grsGallCoGaInTinp">Title</label>
+			<input type="text" class="grsGallCoGaInTinp" id="grsGallCoGaInTinp" name="grsGallCoGaInTinp" ng-model="selGall.title" >
+			<label class="grsGallCoGaInDl" for="grsGallCoGaInDInp">Description</label>
+			<textarea class="grsGallCoGaInDInp" ng-model="selGall.description" id="grsGallCoGaInDInp"></textarea>
+		</div>
+		<div class="grsGallCoGaInPic">
+			<div class="grsGallCoGaInPiSc">
+				<div class="grsGaPwSCt">
+					<div class="grsGaPwSCtc">
+						<img class="grsGPw" ng-src="{{selGall.pvIm}}" ng-class="{'grsVisHidd' : selGall.hidePvIm}">
+					</div>
+				</div>
+				<div class="grsUpPwIC" ng-click="activeGPw()" >
+					<div class="grsUpPwIl">
+						<div></div>
+					</div>
+					<div class="grsUpPwIT">
+						Update Preview Image
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="embedMediaCont" ng-show="shEmCont()">
+			<div class="embedMediaDet">
+				<label>Url Examples</label>
+				<p ng-repeat="ex in embed.examples[embed.type]">
+					{{ex}}
+				</p>
+			</div>
+			<div class="embedMediaUrlC">
+				<input type="text" class="embedMediaUrl" id="grsGallCoGaInTinp" name="embedyoutube" ng-model="embed.url" >
+				<span class="addEmbedMedia" title="Add" ng-click="addEmbedMedia()"></span>
+			</div>
+			<div class="embedMediaClose" title="Close" ng-click="closeEmbedMedia()"></div>
+		</div>
+	</div>
+	<div class="grsGallCoGaAdImsC">
+		<span class="youtube" title="Add youtube embed" ng-click="showEmbedMedia('youtube')"></span>
+		<span class="instagram" title="Add instagram photo/video" ng-click="showEmbedMedia('instagram')"></span>
+		<span class="vimeo" title="Add vimeo embed" ng-click="showEmbedMedia('vimeo')"></span>
+		<span class="flickr" title="Add flickr photo" ng-click="showEmbedMedia('flickr')"></span>
+		<button ng-click="addImages()">Add images from Limb library</button>
+		<button ng-click="addImagesFromWP()">Add images from WP library</button>
+	</div>
+	<div class="grsGallCoGaAcC" grsImagesCount="{{selGall.imagesCount}}" >
+			<div class="grsGallCoGaSeDeC">
+				<div class="grsGallCoGaDeC">
+					<span class="grsGallCoGaDe" ng-click="grsDeleteGImgPr($event)" title="Delete"></span>
+				</div>
+				<div class="grsGallCoGaSelC">
+					<span class="grsGallCoGaSel" ng-click="selectItems($event)" title="Select all"></span>
+				</div>
+			</div>
+			<div class="grsGallCoGaOrC">
+				<div class="grsGallOrLab">
+					<span>Order By:</span>
+				</div>
+				<div class="grsGallCoGaOrIdc">
+					<a href=""><span class="grsGallCoGaOrId" ng-class="{'selected': order == 'id'}" ng-click="orderBy('id', $event)">ID</span></a>
+					<span ng-class="{'selected down' : (reverse && order == 'id') , 'selected up' : (!reverse && order == 'id')}" ng-if="order == 'id'" class="grsGallCoGaOrIt"></span>
+				</div>
+				<div class="grsGallCoGaOrNac">
+					<a href=""><span class="grsGallCoGaOrNa" ng-class="{'selected': order == 'title'}" ng-click="orderBy('title', $event)" >Title</span></a>
+					<span ng-class="{'selected down' : (reverse && order == 'title') , 'selected up' : (!reverse && order == 'title')}" ng-if="order == 'title'" class="grsGallCoGaOrIt"></span>
+				</div>
+				<div class="grsGallCoGaOrDec">
+					<a href=""><span class="grsGallCoGaOrDe" ng-class="{'selected': order == 'description'}" ng-click="orderBy('description', $event)" >Description</span></a>
+					<span ng-class="{'selected down' : (reverse && order == 'description') , 'selected up' : (!reverse && order == 'description')}" ng-if="order == 'description'" class="grsGallCoGaOrIt"></span>
+				</div>
+				<div class="grsGallCoGaOrDec">
+					<a href=""><span class="grsGallCoGaOrDe" ng-class="{'selected': order == 'order'}" ng-click="orderBy('order', $event)" >Custom Order</span></a>
+					<span ng-class="{'selected down' : (reverse && order == 'order') , 'selected up' : (!reverse && order == 'order')}" ng-if="order == 'order'" class="grsGallCoGaOrIt"></span>
+				</div>
+			</div>													
+			<div class="grsGallCoGaSePaC">
+				<div class="grsGallCoGaPaC">
+					<label for="grsGallCoGaIipp">Items per page</label>
+					<input type="number" id="grsGallCoGaIipp" min="1" max="100" id="grsGallCoGaPa" class="grsGallCoGaPa" ng-model="pageSize" ng-change="changeItemsPerPage()">
+				</div>
+				<div class="grsGallCoGaSeC">
+					<input type="text" class="grsGallCoGaSe" id="grsGallCoGaSe" ng-model="query" ng-change="search()" name="grsGallCoGaSe" value="" >
+				</div>
+			</div>
+	</div>
+	<div class="grsGallCoGaImsC" draggable >
+		<div class="grsGallCoGaImC" key="{{$index}}" ng-repeat="imgData in pagedItems[currentPage]" ng-click="selectItem($index)" ng-class="{'grsFirstContImSel' : imgData.select, 'grsAnDur grsZoomOut' : imgData.delete, 'grsVisHidd' : imgData.hide }">	
+			<div class="grsGallCoGaImVa">
+				<div class="grsGallCoGaImVaCe">
+					<img class="grsGallCoGaIm" ng-src="{{getItemSrc($index)}}"> 
+				</div>
+			</div>
+			<div class="grsGallCoGaImDatC" grsImageId="{{imgData.id}}"  ng-class="{'selected':imgData.select, 'info':imgData.info}">
+				<div class="grsGallCoGaImDatSC" ng-class="{'hide' : imgData.select }">
+					<div class="grsGallCoGaImDatEd">
+						<div class="grsGallCoGaImDatEdBc" title="Edit">
+							<span class="grsGallCoGaImDatEdB" ng-click="showItemInfo($index, $event)"></span>
+						</div>
+						<div class="grsGallCoGaImDatEdc" ng-class="{'hide' : !imgData.info }" ng-click="$event.stopPropagation()">
+							<div class="grsGallCoGaImDatEdTc">
+								<div class="grsGallCoGaImDatEdTl">
+									<label>Title</label>
+								</div>
+								<div class="grsGallCoGaImDatEdTinp"> 
+									<input type="text" name="grsImageTitle{{imgData.id}}" class="grsImageTitle" ng-model="imgData.title">
+								</div>
+							</div>
+							<div class="grsGallCoGaImDatEdDc">
+								<div class="grsGallCoGaImDatEdDl" > 
+									<label>Description</label>
+								</div>
+								<div class="grsGallCoGaImDatEdDinp"> 
+									<textarea name="grsImageDesp{{imgData.id}}" class="grsImageDescription" ng-model="imgData.description"></textarea>
+								</div>
+							</div>
+							<div class="grsGallCoGaImDatEdLc">
+								<div class="grsGallCoGaImDatEdLl" > 
+									<label>Link</label>
+								</div>
+								<div class="grsGallCoGaImDatEdLinp"> 
+									<input type="text" name="grsImageLink{{imgData.id}}" class="grsImageLink" valid-link="imgData" ng-model="imgData.link">
+								</div>
+							</div>
+							<div class="grsGallCoGaImDatEdPc"> 
+								<label>Publish</label>
+								<input type="radio" ng-model="imgData.publish" value="1" name="grsImagePublish{{imgData.id}}">
+								<input type="radio" ng-model="imgData.publish" value="0" name="grsImagePublish{{imgData.id}}">
+							</div>
+						</div>
+					</div>
+					<div class="grsGallCoGaImDatAc">
+						<div class="grsGallCoGaImDatAcTc">
+							<a href="#" class="grsGallCoGaImDatAcT" ng-click="showPopup($index, $event)" grsImgName="{{imgData.name}}" ng-bind="imgData.title.trunc(22)"></a>
+						</div>
+						<div class="grsGallCoGaImDatAcDc">
+							<div class="grsGallCoGaImDatAcD" title="Remove">
+								<span class="grsGallCoGaImDatAcDb" ng-click="grsDeleteGImgPr($event, $index)" grsIndex="{{$index}}" ></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>								
+		</div>
+	</div>
+	<div class="grsGallCoGaPnavC">
+		<ul class="grsGallCoGaPnav">
+			<li ng-class="{disabled: currentPage == 0}">
+				<a href ng-click="firstPage();">&laquo;</a>
+			</li>
+			<li ng-class="{disabled: currentPage == 0}">
+				<a href ng-click="prevPage()">&lsaquo;</a>
+			</li>
+			<li ng-repeat="n in range(pagedItems.length)"
+				ng-class="{active: n == currentPage}"
+			ng-click="setPage()">
+				<a href ng-bind="n + 1">1</a>
+			</li>
+			<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+				<a href ng-click="nextPage()">&rsaquo;</a>
+			</li>
+			<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+				<a href ng-click="lastPage()">&raquo;</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<grs-popup ng-class="{'grsAnDur grsZoomIn' : popupOptions.show}"></grs-popup>

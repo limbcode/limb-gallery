@@ -1,0 +1,127 @@
+<div class="grsPopup grsTemplate{{params.shatts.theme}}" id="grsPopup" ng-if="options.enterPopup()" ng-show="options.showPopup()" ng-click="grsCpFrSide($event)" >
+	<div class="grsPopupRc" ng-style="{width: view.mcw + 'px', height : view.mch + 'px'}" ng-click="$event.stopPropagation();">
+		<div class="grsPopupMc" id="grsPopupMc" ng-style="{width: view.mcw + 'px', height : view.mch + 'px'}">
+			<!-- Image container -->
+			<div class="grsPopupImC" ng-style="{width: view.icw + 'px'}">
+				<!-- Filmstrip top -->
+				<div ng-if="shFilmsVtop()" onload="shFilmContLoaded()" ng-include="view.filmView" class="grsPopupFc" ng-class="{'' : items.length}">
+				</div>
+				<!-- Images -->
+				<div class="grsPopupImMc" id="grsImgMainCont" ng-style="{height: view.ich + 'px'}" >
+					<div class="grsPopupImLc grsPopupImFLc first" ng-class="classFfD()">
+						<div class="grsPopupImLV" ng-if="fisImage()" ng-swipe-left="swipeRight($event)" ng-swipe-right="swipeLeft($event)">
+							<div class="grsPopupImLfE forEffect" ng-style="{'max-width':(view.icw)+'px','max-height':(view.ich)+'px'}">
+								<img ng-src="{{fImSrc()}}" class="grsPopupImLfIm" ng-class="classFfI()" ng-style="{'max-width':(view.icw)+'px','max-height':(view.ich)+'px'}"  >
+							</div>
+						</div>
+						<video ng-if="fisVideo()" ng-class="classFfI()" controls autoplay>
+							<source vg-src="{{fImSrc()}}"  type="video/mp4">
+						  	<source vg-src="{{fImSrc()}}"  type="video/ogg">
+						 	 Your browser does not support the video tag.
+						</video>
+						<iframe ng-if="fisLink()" ifr-src="{{fImSrc()}}" ng-class="classFfI()" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+					<div class="grsPopupImLc grsPopupImSLc second" ng-class="classFsD()" >
+						<div class="grsPopupImLV" ng-if="sisImage()" ng-swipe-left="swipeRight($event)" ng-swipe-right="swipeLeft($event)" >
+							<div class="grsPopupImLfE forEffect" ng-style="{'max-width':(view.icw)+'px','max-height':(view.ich)+'px'}">
+								<img class="grsPopupImLsIm" ng-class="classFsI()" ng-style="{'max-width':(view.icw)+'px','max-height':(view.ich)+'px'}" ng-src="{{sImSrc()}}" >
+							</div>
+						</div>
+						<video ng-if="sisVideo()" ng-class="classFsI()" controls autoplay>
+							<source vg-src="{{sImSrc()}}"  type="video/mp4">
+						  	<source vg-src="{{sImSrc()}}"  type="video/ogg">
+						 	 Your browser does not support the video tag.
+						</video>
+						<iframe ng-if="sisLink()" ifr-src="{{sImSrc()}}" ng-class="classFsI()" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+					<div class="grsPopupImNVb grsPopupImNVl" ng-class="grsCheckLNavVis()" ng-click="grsLeft($event)" >
+						<i class="fa" ng-class="'fa-'+params.theme.navButtons+'-left'" aria-hidden="true"></i>
+					</div>
+					<div class="grsPopupImNVb grsPopupImNVr" ng-class="grsCheckRNavVis()" ng-click="grsRight($event)" >
+						<i class="fa" ng-class="'fa-'+params.theme.navButtons+'-right'" aria-hidden="true"></i>
+					</div>
+					<div ng-if="view.loading" class="grsPopupLc"></div> 
+					<!-- Control buttons container -->
+					<div class="grsPopupB" id="grsButtons" ng-if="shCbutts()" ng-class="contButtPos()" >
+						<div class="grsPopupSBmC" >
+							<a class="grsPopupSFb" target="_blank" ng-if="params.shatts.lightboxfbutt == 1" ng-href="{{view.grsFacebook}}">
+								<div class="grsPopupSB grsPopupSF">
+									<i class="fa" ng-class="'fa-'+params.theme.fb" aria-hidden="true" title="Share on Facebook"></i>
+								</div>
+							</a>
+							<a class="grsPopupSTb" target="_blank" ng-if="params.shatts.lightboxtbutt == 1" ng-href="{{view.grsTwitter}}" >
+								<div class="grsPopupSB grsPopupST">
+									<i class="fa" ng-class="'fa-'+params.theme.twitt" aria-hidden="true" title="Share on Twitter"></i>
+								</div>
+							</a>
+							<a class="grsPopupSGb" target="_blank" ng-if="params.shatts.lightboxgbutt == 1" ng-href="{{view.grsGooglePlus}}" >
+								<div class="grsPopupSB grsPopupSG">
+									<i class="fa" ng-class="'fa-'+params.theme.gplus" aria-hidden="true" title="Share on Google+"></i>
+								</div>
+							</a>
+							<a class="grsPopupSPb" target="_blank" ng-if="params.shatts.lightboxpbutt == 1" ng-href="{{view.grsPinterest}}" >
+								<div class="grsPopupSB grsPopupSP">
+									<i class="fa" ng-class="'fa-'+params.theme.pint" aria-hidden="true" title="Share on Pinterest"></i>
+								</div>
+							</a>
+							<a class="grsPopupSTbb" target="_blank" ng-if="params.shatts.lightboxtbbutt == 1" ng-href="{{view.grsTumblr}}" >
+								<div class="grsPopupSB grsPopupSTb">
+									<i class="fa" ng-class="'fa-'+params.theme.tumb" aria-hidden="true" title="Share on Tumblr"></i>
+								</div>
+							</a>
+							<a class="grsPopupSLib" target="_blank" ng-if="params.shatts.lightboxlibutt == 1" ng-href="{{view.grsLinkedIn}}" >
+								<div class="grsPopupSB grsPopupSLi">
+									<i class="fa" ng-class="'fa-'+params.theme.lini" aria-hidden="true" title="Share on Linkedin"></i>
+								</div>
+							</a>
+							<a class="grsPopupSReddb" target="_blank" ng-if="params.shatts.lightboxreddbutt == 1" ng-href="{{view.grsReddit}}" >
+								<div class="grsPopupSB grsPopupSRedd">
+									<i class="fa" ng-class="'fa-'+params.theme.redd" aria-hidden="true" title="Share on Reddit"></i>
+								</div>
+							</a>
+							<div style="clear:both">
+							</div>
+						</div>
+						<div class="grsPopupOBmC">
+							<div class="grsPopupOB grsPopupEnAp" ng-if="params.shatts.lightboxap == 1" ng-click="grsEnAp($event)" >
+								<i class="fa" ng-class="grsPopupEnAp()" aria-hidden="true" title="Play/Pause"></i>
+							</div>
+							<div class="grsPopupOB grsPopupSInf" ng-if="params.shatts.lightboximinf == 1" ng-click="grsSInf($event)">
+								<i class="fa" ng-class="'fa-'+params.theme.info" aria-hidden="true" title="Show/Hide info"></i>
+							</div>
+							<div class="grsPopupOB grsPopupOFb" ng-if="params.shatts.lightboxfsbutt == 1" ng-click="grsSFM($event)" >
+								<i class="fa" ng-class="grsPopupOFCl()" aria-hidden="true"></i>
+							</div>
+							<div class="grsPopupOB grsPopupOCb" ng-if="shCommCont()" ng-click="grsOCC($event)">
+								<i class="fa" ng-class="'fa-'+params.theme.cop" aria-hidden="true" title="Show comments"></i>
+							</div>
+							<div style="clear:both">
+							</div>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<!-- Image info -->
+					<div class="grsPopupTc" ng-if="params.shatts.lightboximinf == 1" ng-show="view.shInf">
+						<span ng-bind="grsGetInfT()"></span>
+						<p ng-bind="grsGetInfD()"></p>
+					</div>
+					<!-- Image counting -->
+					<div class="grsPopupImCount" ng-if="params.shatts.lightboximcn == 1" ng-show="items.length" >
+						<span>{{view.cImInG+1+' of '+items.length}}</span>
+					</div>
+				</div> 
+				<!-- Filmstrip boottom -->	
+				<div ng-if="shFilmsVbot()" onload="shFilmContLoaded()" ng-include="view.filmView" class="grsPopupFc" ng-class="{'' : items.length}" >
+				</div>					
+			</div> 
+			<!-- Comments container -->
+			<div class="grsPopupCoC" onload="shCommContLoaded()" ng-include="view.commView" ng-if="shCommCont()" ng-style="{width: view.ccw + 'px', right: view.ccr + 'px'}">
+			</div>
+			<div style="clear:both">
+			</div>
+		</div>
+		<div class="grsPopupCoCClos" ng-click="grsCp($event)" ng-class="clBposRes()">
+			<i class="fa" ng-class="'fa-'+params.theme.pcl" aria-hidden="true" title="Close"></i>
+		</div>
+	</div>
+</div>

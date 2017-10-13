@@ -1,0 +1,20 @@
+<div ng-if="options.showNav" class="grsNavC">
+	<ul class="grsNav">
+		<li ng-class="{disabled: currentPage == 0}" class="grsNavL grsNavLF">
+			<a href ng-click="firstPage();" class="grsNavA">&laquo;</a>
+		</li>
+		<li ng-class="{disabled: pageInation.currentPage == 0}" class="grsNavL">
+			<a href ng-click="prevPage()" class="grsNavA">&lsaquo;</a>
+		</li>
+		<li ng-repeat="n in range(pageInation.pagesCount)"
+			ng-click="setPage()" class="grsNavL">
+			<a href ng-bind="n + 1" class="grsNavA" ng-class="{grsNavAct: n == pageInation.currentPage}">1</a>
+		</li>
+		<li ng-class="{disabled: pageInation.currentPage == pageInation.pagesCount - 1}" class="grsNavL">
+			<a href ng-click="nextPage()" class="grsNavA">&rsaquo;</a>
+		</li>
+		<li ng-class="{disabled: pageInation.currentPage == pageInation.pagesCount - 1}" class="grsNavL grsNavLL">
+			<a href ng-click="lastPage()" class="grsNavA">&raquo;</a>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,43 @@
+<div class="grsMessCont" ng-if="message.show">{{message.text}}</div>
+<div class="grsImsCont" ng-style="{width: params.contWidth + 'px', height: params.contHeight + 'px'}">
+	<div class="grsLoadCont" ng-if="pageination.loading"></div>
+	<div class="grsFilm" ng-show="shFilm()">
+		<div class="grsFlImFrContmR grsFlImFrContmB" ng-hide="params.flp==0" ng-click="moveFC('right')" ng-if="navType()">
+			<i class="fa" ng-class="'fa-'+params.data.theme.film.fmNavButtons+'-left'" aria-hidden="true"></i>
+		</div>
+		<div class="grsFlImFIsC" ng-style="{left: params.flp + 'px', width: params.flWidth + 'px', height: params.flHeight}">
+			<div class="grsFlImFrCont" ng-repeat="imgData in pageination.pagedItems[pageination.currentPage]" ng-style="{height: + params.thumbHeight + 'px', width: params.thumbWidth + 'px'}">
+				<a href="#" class="grsImsBox" ng-click="clickAction($index, $event)" >
+					<div class="grsImsMainC">
+						<div class="grsFlImFrContbck" back-img="{{getImageSrc($index)}}">
+						</div>
+						<div class="grsVidIc" ng-if="shVIc($index)">
+						</div>
+						<div class="grsMask" ng-if="grsShMC()">
+							<div class="mask mask-1"></div>
+							<div class="mask mask-2"></div>
+							<div class="grsImHovEf" >
+								<div class="grsFmTitleCT">
+									<div class="grsFmTitleCC">
+										<div class="grsFmTitle">{{imgData.title}}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="grsFmTitleC" ng-if="grsShTC()" ng-class="grsOnhv()">
+							<div class="grsFmTitleCT">
+								<div class="grsFmTitleCC">
+									<div class="grsFmTitle">{{imgData.title}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div> 
+		</div>
+		<div class="grsFlImFrContmL grsFlImFrContmB" ng-hide="hideNav()" ng-click="moveFC('left')" ng-if="navType()">
+			<i class="fa" ng-class="'fa-'+params.data.theme.film.fmNavButtons+'-right'" aria-hidden="true"></i>
+		</div>
+	</div>
+</div>
+<grs-nav page-ination="pageination" ng-style="{width: params.contWidth + 'px'}" class="grsNavD"></grs-nav>

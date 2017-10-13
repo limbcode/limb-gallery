@@ -1,0 +1,7 @@
+<div ng-if="options.back" class="grsBackC" ng-style="{width : params.contWidth + 'px'}">
+	<a class="grsBack" href="#" ng-click="grsBack($event)" >Back</a>
+</div>
+<div ng-if="options.albumView" ng-include="options.grsMainView" class="grsAlbum">
+</div>
+<div ng-if="!options.albumView" ng-include="options.grsGalView" class="grsGallery">
+</div>

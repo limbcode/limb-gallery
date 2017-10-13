@@ -1,0 +1,115 @@
+<div class="grsGallUplMc">
+	<div class="grsGallUplHide" title="Close" ng-click="closeUpl()"></div>
+	<div class="grsGallUplNavBc">
+		<ul class="grsGallUplNavBu">
+			<li class="grsGallUplNavBuli ng-scope">
+				<span class="grsGallUplNavUpB" title="Upload images" ng-click="upload($event)"></span>
+			</li>
+			<li class="grsGallUplNavBuli ng-scope">
+				<span class="grsGallUplNavSB"  ng-class="{'allselected' : isAllSelected()}" ng-click="selectAll($event)" title="Select All"></span>
+			</li>
+			<li class="grsGallUplNavBuli ng-scope">
+				<span class="grsGallUplNavDB"  ng-click="grsDeleteUpImgPr($event)" ng-hide="!isSingleSelExist()" title="Delete"></span>
+			</li>
+			<li class="grsGallUplNavBuli ng-scope">
+				<span class="grsGallUplNavAB"  ng-click="addImages()" ng-show="checkAddImgC()" title="Add"></span>
+			</li>
+			<li class="grsGallUplNavBuli ng-scope">
+				<span class="grsGallUplNavAFB"  ng-click="addFolder($event)" title="Add folder"></span>
+			</li>
+			<li class="grsGallUplNavBuli ng-scope">
+				<span class="grsGallUplNavBB"  ng-click="back($event)" title="Back"></span>
+			</li>
+			<li class="grsGallUplNavBuli grsGallUplDirsNc">
+				<ul class="grsGallUplDirsNu">
+					<li ng-repeat="dir in dirs" class="grsGallUplDirsNuli">
+						<span class="grsGallUplDirN" ng-class="{'curent' : dir.dirindex == curentDirIndex}" dir-index="{{dir.dirindex}}" ng-click="changeDir(dir.dirindex)">{{dir.dirname}}</span>
+						<span class="grsGallUplDirN sep" ng-class="{'curent' : dir.dirindex == curentDirIndex}">/</span>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="grsGallUplActC">
+		<div class="grsGallUplActSC"> 
+			<div class="grsGallUplActSImC">
+				<input type="text" class="grsGallUplActSIm" ng-model="query" ng-change="search()" name="grsGalleryImgSearch" value="" >
+			</div>
+			<div class="grsGallUplActImPC">
+				<input type="number" min="1" max="100" size="10" class="grsGallUplActImP" ng-model="pageSize" ng-change="changeItemsPerPage()">
+			</div>
+		</div>
+	</div>
+	<div class="grsGallUplImgsC">
+		<div class="grsGallUplImgsSC">
+			<form id="upload" method="post" action="" enctype="multipart/form-data">
+				<div id="drop" class="grsGallUplImDrZ"> 
+					<input id="grsUpload" type="file" name="files" style="display:none;" multiple />
+				</div>
+				<ul class="grsGallUplImgsU" >
+					<li class="grsGallUplImgsUli" ng-repeat="uplthums in pagedItems[currentPage]"  id="grsImageKey{{uplthums.key}}" ng-click="select($index, $event)" ng-dblclick="uplthums.isDir ? changeDir(uplthums.dirIndex, $event) : addImage($index, $event)" ng-class="{'selected' : uplthums.select, 'grsAnDur grsZoomOut' : uplthums.delete }">											
+						<div class="grsGallUplImgLdC">
+							<div class="grsGallUplImgLdSC"> 
+								<input style="display:none" type="text" value="0" data-width="48" data-height="48" data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" />
+							</div>
+						</div>
+						<div class="grsGallUplImgAcC" data-dirIndex="{{uplthums.dirIndex}}"> 
+							<div class="grsGallUplImgAcSC"> 	
+								<div class="grsGallUplImgDAcSC"> 
+									<span class="grsGallUplImgD" ng-click="grsDeleteUpImgPr($event, $index)" title="Delete" ></span>
+								</div>
+								<div class="grsGallUplImgAAcSC" > 
+									<span class="grsGallUplImgA" ng-click="addImage($index, $event)" ng-if="!uplthums.isDir" title="{{options.addImageTitle}}"  ng-class="{'grsDisable' : !options.addImage}"></span>
+								</div>
+							</div>
+						</div>
+						<div class="grsGallUplImgNC" > 
+							<div class="grsGallUplImgNSC">
+								<div class="grsGallUplImgNSCc">
+									<div class="grsGallUplImgN" >
+										<div ng-if="!uplthums.rename" ng-click="showIn($index, $event)" title="{{uplthums.name.length > 13 ? uplthums.name.trunc(40) : ''}}" title="Rename">{{uplthums.name.trunc(13)}}</div>
+										<input ng-model="uplthums.name" ng-dblclick="$event.stopPropagation()" ng-click="$event.stopPropagation()" ng-model-options="{ updateOn: 'blur' }" ng-change="rename($index)" ng-if="uplthums.rename" class="grsItemName grsRename" size="14">
+									</div>
+								</div>
+							</div>
+						</div>														
+						<div class="grsGallUplImgFc">
+							<div class="grsGallUplImgFSc">
+								<div class="grsGallUplImgFTc" >
+									<img class="grsImgLoader" ng-src="{{uplLsrc()}}">
+									<img class="grsGallUplImg" style="display:none;opacity:0" data-name="{{uplthums.name}}" ng-src="{{uplthums.path}}" onLoad="jQuery(this).parent().find('.grsImgLoader').remove();jQuery(this).fadeTo(700, 1)" />
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="grsGallUplProgress" style="display:none">
+					<div class="grsGallUplProgressB grsGallUplProgressBS active" role="progressbar"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="grsGallUplPagC">
+		<div class="grsGallUplPagSc">
+			<ul class="grsGallUplPag">
+				<li ng-class="{disabled: currentPage == 0}">
+					<a href ng-click="firstPage();">&laquo;</a>
+				</li>
+				<li ng-class="{disabled: currentPage == 0}">
+					<a href ng-click="prevPage()">&lsaquo;</a>
+				</li>
+				<li ng-repeat="n in range(pagedItems.length)"
+					ng-class="{active: n == currentPage}"
+				ng-click="setPage()"> 
+					<a href ng-bind="n + 1">1</a>
+				</li>
+				<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+					<a href ng-click="nextPage()">&rsaquo;</a>
+				</li>
+				<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+					<a href ng-click="lastPage()">&raquo;</a>
+				</li>
+			</ul>
+		</div>								
+	</div>
+</div>
