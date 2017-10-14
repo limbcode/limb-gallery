@@ -1,4 +1,4 @@
-![Plugin Banner](https://plugins.svn.wordpress.org/limb-gallery/assets/banner-772x250.jpg)
+![Plugin Banner](https://ps.w.org/limb-gallery/assets/banner-772x250.jpg)
 
 # Gallery – Responsive Photo and Video Gallery by Limb for WordPress #
 **Contributors:** limbcode
