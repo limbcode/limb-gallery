@@ -49,14 +49,14 @@ Gallery Limb is an advanced solution to build gallery with multiple views, creat
 
 ### Gallery Usage Examples ###
 
-*   [Photographer Album](href="http://demo.limbcode.com/photographer)
-*   [Kids Gallery](href="http://demo.limbcode.com/kids-gallery)
-*   [Fashion Gallery](href="http://demo.limbcode.com/fashion)
-*   [Couples Gallery](href="http://demo.limbcode.com/couples-gallery/)
-*   [Portrait Gallery](href="http://demo.limbcode.com/portrait-photography/) 
-*   [Wedding gallery lightbox](href="http://demo.limbcode.com/wedding-gallery/#/grs/0/id/348)
-*   [Product Gallery](href="http://demo.limbcode.com/product-gallery)
-*   [Cafe 86 Instagram Gallery](href="http://demo.limbcode.com/cafe-gallery)
+*   [Photographer Album](http://demo.limbcode.com/photographer)
+*   [Kids Gallery](http://demo.limbcode.com/kids-gallery)
+*   [Fashion Gallery](http://demo.limbcode.com/fashion)
+*   [Couples Gallery](http://demo.limbcode.com/couples-gallery/)
+*   [Portrait Gallery](http://demo.limbcode.com/portrait-photography/) 
+*   [Wedding gallery lightbox](http://demo.limbcode.com/wedding-gallery/#/grs/0/id/348)
+*   [Product Gallery](http://demo.limbcode.com/product-gallery)
+*   [Cafe 86 Instagram Gallery](http://demo.limbcode.com/cafe-gallery)
 
 **Gallery shortcode**
 
